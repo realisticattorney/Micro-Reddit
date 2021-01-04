@@ -36,7 +36,7 @@ belongs_to course
 
 users 
   username: string [unique, present, length: { in: 6..20 }]
-  email: string [unique, presence, format: {without: @, message.capitalize: 'please enter a valid address']
+  email: string [unique, present, format: {without: @, message.capitalize: 'please enter a valid address']
 
 profile_tabs
   has_one :user
@@ -64,12 +64,12 @@ countries
 
 ages
   has_many :profile_tabs
-  years: integer[presence,inclusion: { in: 1..100)}]
+  years: integer[present,inclusion: { in: 1..100)}]
   
   
 genders
  has_many :profile_tabs
- gender: string [presence, inclusion: { in: %w(male female)}]
+ gender: string [present, inclusion: { in: %w(male female)}]
 
 
  
@@ -79,17 +79,22 @@ genders
 users
 
  username: string [unique, present, length: { in: 6..20 }]
- email: string [unique, presence, format: {regex}]
+ email: string [unique, present, format: {regex}]
  has_many :pins
  has_many :comments, through: pins
 
 pins
   belongs_to :user
   has_many :comments
-  pin: string [presence]
+  img: url [present]
+  user_id: integer[present]
+
 comments
   belongs_to :user
   belongs_to :pin
-  comment: string [presence]
+  comment: string [present]
+  pin_id: integer[present]
+  user_id: integer[present]
+
   
 
