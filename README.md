@@ -70,3 +70,26 @@ ages
 genders
  has_many :profile_tabs
  gender: string [presence, inclusion: { in: %w(male female)}]
+
+
+ 
+3. You want to build a virtual pinboard, so you’ll have users on your platform who can create “pins”. Each pin will contain the URL to an image on the web. Users can comment on pins (but can’t comment on comments).
+
+
+users
+
+ username: string [unique, present, length: { in: 6..20 }]
+ email: string [unique, presence, format: {regex}]
+ has_many :pins
+ has_many :comments, through: pins
+
+pins
+  belongs_to :user
+  has_many :comments
+  pin: string [presence]
+comments
+  belongs_to :user
+  belongs_to :pin
+  comment: string [presence]
+  
+
