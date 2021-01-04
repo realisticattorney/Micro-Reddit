@@ -96,5 +96,28 @@ comments
   pin_id: integer[present]
   user_id: integer[present]
 
-  
 
+
+4-You want to build a message board like Hacker News. Users can post links. Other users can comment on these submissions or comment on the comments. How would you make sure a comment knows where in the hierarchy it lives?
+
+
+
+users
+
+  username: string [unique, present, length: { in: 6..20 }]
+  email: string [unique, presence, format: {regex}]
+  has_many :entries
+  has_many :comments
+
+entries
+  entry: url [present]
+  belongs_to :user
+  has_many :comments
+  user_id: integer[present]
+
+comments
+  belongs_to :user
+  belongs_to :entry
+  has_many :comments, class_name: "Comment", foreign_key: "parent_id"
+  belongs_to :parent, class_name: "Comment", optional: true
+  
