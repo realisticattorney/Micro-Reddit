@@ -30,4 +30,4 @@ lessons
 belongs_to course
 
 
-2
+2- You are building the profile tab for a new user on your site. You are already storing your user’s username and email, but now you want to collect demographic information like city, state, country, age and gender. Think – how many profiles should a user have? How would you relate this to the User model?
