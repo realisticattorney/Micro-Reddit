@@ -121,3 +121,8 @@ comments
   has_many :comments, class_name: "Comment", foreign_key: "parent_id"
   belongs_to :parent, class_name: "Comment", optional: true
   
+
+
+Is the author_id: assumed if it's on the child of a has_many - belongs_to association?
+
+
