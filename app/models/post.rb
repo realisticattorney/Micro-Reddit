@@ -2,5 +2,5 @@ class Post < ApplicationRecord
    has_many :comments
    belongs_to :user
 
-   validates :link, presence: true
+   validates :link, format: URI::regexp(%w[http https])
 end
