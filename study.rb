@@ -84,3 +84,12 @@ If @book instances belongs_to author but author doesnt has_many (so it is not a 
    end
  end
  
+
+
+
+
+ > u = User.new(name:  "ada")
+ u.valid? true
+ 
+
+
