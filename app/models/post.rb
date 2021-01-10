@@ -1,6 +1,8 @@
-class Post < ApplicationRecord
-   has_many :comments
-   belongs_to :user
+# frozen_string_literal: true
 
-   validates :link, format: URI::regexp(%w[http https])
+class Post < ApplicationRecord
+  has_many :comments
+  belongs_to :user
+
+  validates :link, format: URI::DEFAULT_PARSER.make_regexp(%w[http https])
 end

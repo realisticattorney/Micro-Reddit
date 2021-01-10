@@ -1,6 +1,8 @@
-class User < ApplicationRecord
-   has_many :posts
-   has_many :comments
+# frozen_string_literal: true
 
-   validates :name, presence: true, uniqueness: true
+class User < ApplicationRecord
+  has_many :posts
+  has_many :comments
+
+  validates :name, presence: true, uniqueness: true
 end
