@@ -1,128 +1,54 @@
-# README
+# Building a micro-Reddit
 
-Building records warm up tasks:
+This is the Ruby On Rails project #3, from the Microverse's main curriculum. It was aimed to build a micro version of Reddit, with no front-end, just the database tables(users, posts, comments) their associations and validations required. 
 
-1-You are building an online learning platform (much like this!). You’ve got many different courses, each with a title and description, and each course has multiple lessons. Lesson content consists of a title and body text.
+![screenshot](./lib/assets/screenshot.png)
 
+## Built With
 
+-Ruby on Rails
+-VS Code
+## Getting Started
 
-presumed = {  id:integer
-  created_at:datetime
-  updated_at:datetime
-}
+To get a local copy up and running follow these simple example steps.
 
+### Prerequisites
 
+- Ruby and Rails on your local machine
 
-courses
-  title:string [unique, present]
-  body:text [present]
-  author_name: string [unique, present]
-  presumed
+### Setup
 
-has_many lessons
+1- Open your terminal
 
-lessons
-  title:string [unique, present]
-  body:text [present]
-  course_id: integer 
-  presumed
+2- Clone the repository typing $ git clone git@github.com:realisticattorney/Micro-Reddit.git
 
-belongs_to course
+3- Go to Micro-Reddit repository by typing $ cd micro-reddit
 
+4- Enter $ bundle install to install bundler gem
 
-2- You are building the profile tab for a new user on your site. You are already storing your user’s username and email, but now you want to collect demographic information like city, state, country, age and gender. Think – how many profiles should a user have? How would you relate this to the User model?
+5- Finally, run $ rails db:migrate to run all the migrations needed on the database.
+
+Now enter $ rails console to run the app
 
 
+## Author
 
-users 
-  username: string [unique, present, length: { in: 6..20 }]
-  email: string [unique, present, format: {without: @, message.capitalize: 'please enter a valid address']
-
-profile_tabs
-  has_one :user
-  belongs_to :city
-  belongs_to :age
-  belongs_to :gender
+👤 **German Aquila** 
+- GitHub: [@realisticattorney](https://github.com/realisticattorney) 
+- Twitter: [@ContoliAxl](https://www.twitter.com/contoliaxl)
+- Linkedin: [@germanaquila](https://www.linkedin.com/in/german-aquila-55a9171b5/)  
 
 
-cites
-  has_many :profile_tabs
-  belongs_to :state
-  name: string [unique, present]
-  state_id: integer [present]
+## 🤝 Contributing
 
-states
-  has_many :profile_tabs
-  has_many :cities
-  belongs_to :country
-  country_id: integer [unique, present]
-  name: string [unique, present]
-
-countries
- has_many: :profile_tabs
- has_many :cities, through: :states
-
-ages
-  has_many :profile_tabs
-  years: integer[present,inclusion: { in: 1..100)}]
-  
-  
-genders
- has_many :profile_tabs
- gender: string [present, inclusion: { in: %w(male female)}]
+Contributions, issues, and feature requests are welcome!
 
 
- 
-3. You want to build a virtual pinboard, so you’ll have users on your platform who can create “pins”. Each pin will contain the URL to an image on the web. Users can comment on pins (but can’t comment on comments).
+## Show your support
 
+Give a ⭐️ if you like this project!
 
-users
+## 📝 License
 
- username: string [unique, present, length: { in: 6..20 }]
- email: string [unique, present, format: {regex}]
- has_many :pins
- has_many :comments, through: pins
-
-pins
-  belongs_to :user
-  has_many :comments
-  img: url [present]
-  user_id: integer[present]
-
-comments
-  belongs_to :user
-  belongs_to :pin
-  comment: string [present]
-  pin_id: integer[present]
-  user_id: integer[present]
-
-
-
-4-You want to build a message board like Hacker News. Users can post links. Other users can comment on these submissions or comment on the comments. How would you make sure a comment knows where in the hierarchy it lives?
-
-
-
-users
-
-  username: string [unique, present, length: { in: 6..20 }]
-  email: string [unique, presence, format: {regex}]
-  has_many :entries
-  has_many :comments
-
-entries
-  entry: url [present]
-  belongs_to :user
-  has_many :comments
-  user_id: integer[present]
-
-comments
-  belongs_to :user
-  belongs_to :entry
-  has_many :comments, class_name: "Comment", foreign_key: "parent_id"
-  belongs_to :parent, class_name: "Comment", optional: true
-  
-
-
-Is the author_id: assumed if it's on the child of a has_many - belongs_to association?
-
+This project is [MIT](./LICENSE).
 
